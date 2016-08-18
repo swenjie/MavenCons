@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+<!DOCTYPE configuration   
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	 <environments default="development">
+		<environment id="development">
+		    <!-- 配置事物 使用jdbc方式做事物管理 -->
+			<transactionManager type="jdbc" />
+			<!-- 配置与数据库连接的一些信息 
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver" />
+				<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
+				<property name="username" value="test" />
+				<property name="password" value="oracle" />
+			</dataSource>
+			-->
+			 <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://localhost:3306/manager01" />
+                <property name="username" value="root" />
+                <property name="password" value="1026" />
+            </dataSource>
+			
+		</environment>
+	</environments>
+	
+	<!-- 引入其他映射配置文件 -->
+	<mappers>
+		<mapper resource="com/ctvit/db/mappings/UserInfoMapper.xml"/>
+		<mapper resource="com/ctvit/db/mappings/UserInfoMapper.xml"/>
+	</mappers>
+	
+</configuration> 

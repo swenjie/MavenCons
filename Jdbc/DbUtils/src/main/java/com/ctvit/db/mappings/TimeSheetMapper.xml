@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ctvit.db.dao.TimeSheetMapper" >
+  <resultMap id="BaseResultMap" type="com.ctvit.db.beans.TimeSheet" >
+    <id column="timesheetid" property="timesheetid" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="timedate" property="timedate" jdbcType="TIMESTAMP" />
+    <result column="ontime" property="ontime" jdbcType="TIME" />
+    <result column="offtime" property="offtime" jdbcType="TIME" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="onexception" property="onexception" jdbcType="SMALLINT" />
+    <result column="offexception" property="offexception" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    timesheetid, userid, timedate, ontime, offtime, remarks, onexception, offexception
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ctvit.db.beans.TimeSheetExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from timesheet
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from timesheet
+    where timesheetid = #{timesheetid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from timesheet
+    where timesheetid = #{timesheetid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ctvit.db.beans.TimeSheetExample" >
+    delete from timesheet
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ctvit.db.beans.TimeSheet" >
+    insert into timesheet (timesheetid, userid, timedate, 
+      ontime, offtime, remarks, 
+      onexception, offexception)
+    values (#{timesheetid,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{timedate,jdbcType=TIMESTAMP}, 
+      #{ontime,jdbcType=TIME}, #{offtime,jdbcType=TIME}, #{remarks,jdbcType=VARCHAR}, 
+      #{onexception,jdbcType=SMALLINT}, #{offexception,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ctvit.db.beans.TimeSheet" >
+    insert into timesheet
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="timesheetid != null" >
+        timesheetid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="timedate != null" >
+        timedate,
+      </if>
+      <if test="ontime != null" >
+        ontime,
+      </if>
+      <if test="offtime != null" >
+        offtime,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="onexception != null" >
+        onexception,
+      </if>
+      <if test="offexception != null" >
+        offexception,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="timesheetid != null" >
+        #{timesheetid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="timedate != null" >
+        #{timedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ontime != null" >
+        #{ontime,jdbcType=TIME},
+      </if>
+      <if test="offtime != null" >
+        #{offtime,jdbcType=TIME},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="onexception != null" >
+        #{onexception,jdbcType=SMALLINT},
+      </if>
+      <if test="offexception != null" >
+        #{offexception,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ctvit.db.beans.TimeSheetExample" resultType="java.lang.Integer" >
+    select count(*) from timesheet
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update timesheet
+    <set >
+      <if test="record.timesheetid != null" >
+        timesheetid = #{record.timesheetid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null" >
+        userid = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.timedate != null" >
+        timedate = #{record.timedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ontime != null" >
+        ontime = #{record.ontime,jdbcType=TIME},
+      </if>
+      <if test="record.offtime != null" >
+        offtime = #{record.offtime,jdbcType=TIME},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onexception != null" >
+        onexception = #{record.onexception,jdbcType=SMALLINT},
+      </if>
+      <if test="record.offexception != null" >
+        offexception = #{record.offexception,jdbcType=SMALLINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update timesheet
+    set timesheetid = #{record.timesheetid,jdbcType=VARCHAR},
+      userid = #{record.userid,jdbcType=INTEGER},
+      timedate = #{record.timedate,jdbcType=TIMESTAMP},
+      ontime = #{record.ontime,jdbcType=TIME},
+      offtime = #{record.offtime,jdbcType=TIME},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      onexception = #{record.onexception,jdbcType=SMALLINT},
+      offexception = #{record.offexception,jdbcType=SMALLINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ctvit.db.beans.TimeSheet" >
+    update timesheet
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="timedate != null" >
+        timedate = #{timedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ontime != null" >
+        ontime = #{ontime,jdbcType=TIME},
+      </if>
+      <if test="offtime != null" >
+        offtime = #{offtime,jdbcType=TIME},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="onexception != null" >
+        onexception = #{onexception,jdbcType=SMALLINT},
+      </if>
+      <if test="offexception != null" >
+        offexception = #{offexception,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where timesheetid = #{timesheetid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ctvit.db.beans.TimeSheet" >
+    update timesheet
+    set userid = #{userid,jdbcType=INTEGER},
+      timedate = #{timedate,jdbcType=TIMESTAMP},
+      ontime = #{ontime,jdbcType=TIME},
+      offtime = #{offtime,jdbcType=TIME},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      onexception = #{onexception,jdbcType=SMALLINT},
+      offexception = #{offexception,jdbcType=SMALLINT}
+    where timesheetid = #{timesheetid,jdbcType=VARCHAR}
+  </update>
+</mapper>
