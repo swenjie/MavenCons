@@ -17,7 +17,7 @@
 			</tr>
 			<tr align="center">
 				<td>NAME</td>
-				<td><input type="password" name="userid" width="50"/></td>
+				<td><input type="password" name="password" width="50"/></td>
 			</tr>
 			<tr align="center">
 			<td colspan="2"><input type="submit" width="35" value="submit"/>
