@@ -1,6 +1,6 @@
 package com.ctvit.db.utils;
 
-import java.io.File;import java.text.SimpleDateFormat;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;

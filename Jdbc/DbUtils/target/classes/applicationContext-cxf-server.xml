@@ -12,7 +12,6 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 
 	<context:annotation-config/>
 
-
 	<jaxrs:server address="/RESTWebService" id="RESTWebService">
 		<jaxrs:serviceBeans>
 			<bean class="com.ctvit.db.services.RestServiceForDbImpl"></bean>
