@@ -15,9 +15,10 @@ public class FilesUtils {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String filePath="E:\\pic";
-		System.out.println(filePath);
-		List<String> filelist=new ArrayList<String>();
-		reNameFiles(filePath, filelist);
+		//System.out.println(filePath);
+		//List<String> filelist=new ArrayList<String>();
+		//reNameFiles(filePath, filelist);
+		deleteFiles(filePath,false);
 	}
 	
 	public static List<String> reNameFiles(String filePath,List<String> filelist)
@@ -38,7 +39,8 @@ public class FilesUtils {
 					filelist.add(file.getAbsolutePath());
 					String parentPath=file.getParent()+File.separator;
 					String prefix=getFileExtendName(file);
-					file.renameTo(new File(parentPath+TimeUtils.getDateForPattern(Constants.DATE_FORMAT_SSS)+"1"+prefix));
+					file.renameTo(new File(parentPath+Math.random()*100+"1"+prefix));
+					System.out.println(1);
 				}
 			}
 			
@@ -59,6 +61,32 @@ public class FilesUtils {
 		
 		return filelist;
 	}
+	
+	public static Boolean deleteFiles(String path,Boolean deleteDir){
+		System.out.println(980);
+		Boolean successflag=false;
+		File rootFile=new File(path);
+		if(!rootFile.exists()){
+			return successflag;
+		}
+		if(!rootFile.isDirectory()){
+			successflag=rootFile.delete();
+			return successflag;
+		}
+		File[] files=rootFile.listFiles();
+		if(files.length==0&&deleteDir){
+			successflag=rootFile.delete();
+			return successflag;
+		}
+		for(File file:files){
+			successflag=deleteFiles(file.getAbsolutePath(),true);
+		}
+		
+		
+		return successflag;
+	}
+	
+	
 	public static String getFileExtendName(File file){
 		String fileName=file.getName();
 		String prefix=fileName.substring(fileName.lastIndexOf(".")+1);

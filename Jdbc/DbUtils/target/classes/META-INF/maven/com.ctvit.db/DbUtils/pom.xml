@@ -141,6 +141,19 @@
 	    <artifactId>commons-vfs</artifactId>
 	    <version>1.0</version>
 	</dependency>
+	<!-- https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient -->
+	 
+	<dependency>
+	    <groupId>commons-httpclient</groupId>
+	    <artifactId>commons-httpclient</artifactId>
+	    <version>3.1</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.htmlparser/htmlparser -->
+	<dependency>
+	    <groupId>org.htmlparser</groupId>
+	    <artifactId>htmlparser</artifactId>
+	    <version>1.6</version>
+	</dependency>
 	
   </dependencies>
 </project>

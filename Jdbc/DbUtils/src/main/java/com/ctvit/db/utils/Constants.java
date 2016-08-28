@@ -1,5 +1,6 @@
 package com.ctvit.db.utils;
 
+import java.io.File;
 import java.io.Serializable;
 
 public class Constants implements Serializable{
@@ -14,5 +15,6 @@ public class Constants implements Serializable{
 	public static final String MYSQL_JDBC_PASSWORD="1026";
 	public static final String DATE_FORMAT_SSS="SSS";//当前小时毫秒数
 	public static final String DATE_FORMAT_DATE="yyyy-MM-dd aHH:mm:ss:SSs";//年-月-日 小时：分：秒：毫秒
-	
+	public static final String DATE_FORMAT_DATES="yyyy-MM-dd HH:mm:ss:SSS";
+	public static final String SYSTEM_SPERATOR=File.separator;
 }
