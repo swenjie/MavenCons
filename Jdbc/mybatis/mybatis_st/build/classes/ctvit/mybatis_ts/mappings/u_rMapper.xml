@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ctvit.mybatis_ts.dao.u_rMapper" >
+  <resultMap id="BaseResultMap" type="ctvit.mybatis_ts.model.u_r" >
+    <id column="relationid" property="relationid" jdbcType="VARCHAR" />
+    <result column="user_userid" property="userUserid" jdbcType="VARCHAR" />
+    <result column="rol_roleid" property="rolRoleid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    relationid, user_userid, rol_roleid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="ctvit.mybatis_ts.model.u_rExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from record_user_role
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from record_user_role
+    where relationid = #{relationid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from record_user_role
+    where relationid = #{relationid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="ctvit.mybatis_ts.model.u_rExample" >
+    delete from record_user_role
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="ctvit.mybatis_ts.model.u_r" >
+    insert into record_user_role (relationid, user_userid, rol_roleid
+      )
+    values (#{relationid,jdbcType=VARCHAR}, #{userUserid,jdbcType=VARCHAR}, #{rolRoleid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="ctvit.mybatis_ts.model.u_r" >
+    insert into record_user_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="relationid != null" >
+        relationid,
+      </if>
+      <if test="userUserid != null" >
+        user_userid,
+      </if>
+      <if test="rolRoleid != null" >
+        rol_roleid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="relationid != null" >
+        #{relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="userUserid != null" >
+        #{userUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="rolRoleid != null" >
+        #{rolRoleid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="ctvit.mybatis_ts.model.u_rExample" resultType="java.lang.Integer" >
+    select count(*) from record_user_role
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update record_user_role
+    <set >
+      <if test="record.relationid != null" >
+        relationid = #{record.relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userUserid != null" >
+        user_userid = #{record.userUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rolRoleid != null" >
+        rol_roleid = #{record.rolRoleid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update record_user_role
+    set relationid = #{record.relationid,jdbcType=VARCHAR},
+      user_userid = #{record.userUserid,jdbcType=VARCHAR},
+      rol_roleid = #{record.rolRoleid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="ctvit.mybatis_ts.model.u_r" >
+    update record_user_role
+    <set >
+      <if test="userUserid != null" >
+        user_userid = #{userUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="rolRoleid != null" >
+        rol_roleid = #{rolRoleid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where relationid = #{relationid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ctvit.mybatis_ts.model.u_r" >
+    update record_user_role
+    set user_userid = #{userUserid,jdbcType=VARCHAR},
+      rol_roleid = #{rolRoleid,jdbcType=VARCHAR}
+    where relationid = #{relationid,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ctvit.mybatis_ts.dao.userMapper">
+	<resultMap id="BaseResultMap" type="ctvit.mybatis_ts.model.user">
+		<id column="userid" property="userid" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="userpassword" property="userpassword" jdbcType="VARCHAR" />
+		<result column="organizationid" property="organizationid"
+			jdbcType="VARCHAR" />
+		<result column="userflag" property="userflag" jdbcType="INTEGER" />
+		<result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+		<result column="creator" property="creator" jdbcType="VARCHAR" />
+		<result column="roleflag" property="roleflag" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		userid, username, userpassword, organizationid, userflag,
+		createtime,
+		creator, roleflag
+	</sql>
+	<select id="findUserByPropertyType" parameterType="ctvit.mybatis_ts.model.user"
+		resultType="ctvit.mybatis_ts.model.user">
+		select * from record_user u where u.username like
+		#{username} or
+		u.userid = #{userid}
+	</select>
+
+	<select id="findUserByPropertyMap" parameterType="ctvit.mybatis_ts.model.user"
+		resultMap="BaseResultMap">
+		select * from record_user u where u.username like
+		#{username} or
+		u.userid = #{userid}
+	</select>
+
+
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="ctvit.mybatis_ts.model.userExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'true' as QUERYID,
+		<include refid="Base_Column_List" />
+		from record_user
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from record_user
+		where userid = #{userid,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		record_user
+		where userid = #{userid,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteByExample" parameterType="ctvit.mybatis_ts.model.userExample">
+		delete from record_user
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="ctvit.mybatis_ts.model.user">
+		insert into record_user
+		(userid, username, userpassword,
+		organizationid, userflag, createtime,
+		creator, roleflag)
+		values (#{userid,jdbcType=VARCHAR},
+		#{username,jdbcType=VARCHAR},
+		#{userpassword,jdbcType=VARCHAR},
+		#{organizationid,jdbcType=VARCHAR}, #{userflag,jdbcType=INTEGER},
+		#{createtime,jdbcType=TIMESTAMP},
+		#{creator,jdbcType=VARCHAR},
+		#{roleflag,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="ctvit.mybatis_ts.model.user">
+		insert into record_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userid != null">
+				userid,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="userpassword != null">
+				userpassword,
+			</if>
+			<if test="organizationid != null">
+				organizationid,
+			</if>
+			<if test="userflag != null">
+				userflag,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="creator != null">
+				creator,
+			</if>
+			<if test="roleflag != null">
+				roleflag,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userid != null">
+				#{userid,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="userpassword != null">
+				#{userpassword,jdbcType=VARCHAR},
+			</if>
+			<if test="organizationid != null">
+				#{organizationid,jdbcType=VARCHAR},
+			</if>
+			<if test="userflag != null">
+				#{userflag,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creator != null">
+				#{creator,jdbcType=VARCHAR},
+			</if>
+			<if test="roleflag != null">
+				#{roleflag,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="ctvit.mybatis_ts.model.userExample"
+		resultType="java.lang.Integer">
+		select count(*) from record_user
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update record_user
+		<set>
+			<if test="record.userid != null">
+				userid = #{record.userid,jdbcType=VARCHAR},
+			</if>
+			<if test="record.username != null">
+				username = #{record.username,jdbcType=VARCHAR},
+			</if>
+			<if test="record.userpassword != null">
+				userpassword = #{record.userpassword,jdbcType=VARCHAR},
+			</if>
+			<if test="record.organizationid != null">
+				organizationid =
+				#{record.organizationid,jdbcType=VARCHAR},
+			</if>
+			<if test="record.userflag != null">
+				userflag = #{record.userflag,jdbcType=INTEGER},
+			</if>
+			<if test="record.createtime != null">
+				createtime = #{record.createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.creator != null">
+				creator = #{record.creator,jdbcType=VARCHAR},
+			</if>
+			<if test="record.roleflag != null">
+				roleflag = #{record.roleflag,jdbcType=INTEGER},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update record_user
+		set userid = #{record.userid,jdbcType=VARCHAR},
+		username = #{record.username,jdbcType=VARCHAR},
+		userpassword =
+		#{record.userpassword,jdbcType=VARCHAR},
+		organizationid =
+		#{record.organizationid,jdbcType=VARCHAR},
+		userflag =
+		#{record.userflag,jdbcType=INTEGER},
+		createtime =
+		#{record.createtime,jdbcType=TIMESTAMP},
+		creator =
+		#{record.creator,jdbcType=VARCHAR},
+		roleflag =
+		#{record.roleflag,jdbcType=INTEGER}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="ctvit.mybatis_ts.model.user">
+		update record_user
+		<set>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="userpassword != null">
+				userpassword = #{userpassword,jdbcType=VARCHAR},
+			</if>
+			<if test="organizationid != null">
+				organizationid = #{organizationid,jdbcType=VARCHAR},
+			</if>
+			<if test="userflag != null">
+				userflag = #{userflag,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creator != null">
+				creator = #{creator,jdbcType=VARCHAR},
+			</if>
+			<if test="roleflag != null">
+				roleflag = #{roleflag,jdbcType=INTEGER},
+			</if>
+		</set>
+		where userid = #{userid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="ctvit.mybatis_ts.model.user">
+		update record_user
+		set username = #{username,jdbcType=VARCHAR},
+		userpassword =
+		#{userpassword,jdbcType=VARCHAR},
+		organizationid =
+		#{organizationid,jdbcType=VARCHAR},
+		userflag =
+		#{userflag,jdbcType=INTEGER},
+		createtime =
+		#{createtime,jdbcType=TIMESTAMP},
+		creator =
+		#{creator,jdbcType=VARCHAR},
+		roleflag = #{roleflag,jdbcType=INTEGER}
+		where userid = #{userid,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 自定义查询之嵌套结果查询 一 -->
+	<select id="selectByPrimaryKeyS_RRes" resultMap="user_roleRes"
+		parameterType="java.lang.String">
+		SELECT
+		*
+		FROM
+		record_user U,
+		record_role R,
+		record_user_role
+		UR
+		WHERE
+		U.userid
+		= UR.user_userid
+		AND R.roleid = UR.rol_roleid
+		AND
+		U.userid =
+		#{userid,jdbcType=VARCHAR}
+	</select>
+
+	<resultMap type="ctvit.mybatis_ts.model.user" id="user_roleRes">
+		<id column="userid" property="userid" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="userpassword" property="userpassword" jdbcType="VARCHAR" />
+		<result column="organizationid" property="organizationid"
+			jdbcType="VARCHAR" />
+		<result column="userflag" property="userflag" jdbcType="INTEGER" />
+		<result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+		<result column="creator" property="creator" jdbcType="VARCHAR" />
+		<result column="roleflag" property="roleflag" jdbcType="INTEGER" />
+		<!-- ofType 指定集合对象中的类型 -->
+		<collection property="rolelist" ofType="ctvit.mybatis_ts.model.role">
+			<id column="roleid" property="roleid" jdbcType="VARCHAR" />
+			<result column="rolename" property="rolename" jdbcType="VARCHAR" />
+			<result column="organizationid" property="organizationid"
+				jdbcType="VARCHAR" />
+			<result column="roledesc" property="roledesc" jdbcType="VARCHAR" />
+			<result column="roleflag" property="roleflag" jdbcType="INTEGER" />
+			<result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+			<result column="updatecreatetime" property="updatecreatetime"
+				jdbcType="TIMESTAMP" />
+			<result column="updateuserid" property="updateuserid"
+				jdbcType="VARCHAR" />
+		</collection>
+	</resultMap>
+
+	<!-- 自定义关联查询之嵌套查询 -->
+	<select id="selectByPrimaryKeyS_RQue" parameterType="java.lang.String"
+		resultMap="user_roleQue">
+		select * from record_user where
+		userid=#{userid,jdbcType=VARCHAR}
+	</select>
+
+	<resultMap type="ctvit.mybatis_ts.model.user" id="user_roleQue">
+		<id column="userid" property="userid" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="userpassword" property="userpassword" jdbcType="VARCHAR" />
+		<result column="organizationid" property="organizationid"
+			jdbcType="VARCHAR" />
+		<result column="userflag" property="userflag" jdbcType="INTEGER" />
+		<result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+		<result column="creator" property="creator" jdbcType="VARCHAR" />
+		<result column="roleflag" property="roleflag" jdbcType="INTEGER" />
+		<!-- ofType 指定集合对象中的类型 -->
+		<collection property="rolelist" ofType="ctvit.mybatis_ts.model.role"
+			column="userid" select="getRolesByprimarykey">
+			<id column="roleid" property="roleid" jdbcType="VARCHAR" />
+			<result column="rolename" property="rolename" jdbcType="VARCHAR" />
+			<result column="organizationid" property="organizationid"
+				jdbcType="VARCHAR" />
+			<result column="roledesc" property="roledesc" jdbcType="VARCHAR" />
+			<result column="roleflag" property="roleflag" jdbcType="INTEGER" />
+			<result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+			<result column="updatecreatetime" property="updatecreatetime"
+				jdbcType="TIMESTAMP" />
+			<result column="updateuserid" property="updateuserid"
+				jdbcType="VARCHAR" />
+		</collection>
+	</resultMap>
+	<select id="getRolesByprimarykey" parameterType="java.lang.String"
+		resultType="ctvit.mybatis_ts.model.role">
+		SELECT
+		*
+		FROM
+		record_user_role UR,
+		record_role R
+		WHERE
+		UR.rol_roleid = r.roleid
+		AND UR.user_userid
+		=#{userid,jdbcType=VARCHAR}
+	</select>
+	<!-- 调用存储过程 -->
+
+	<select id="getRoleCountByPrimaryKey" parameterMap="getRoleCountMap"
+		statementType="CALLABLE">
+		CALL getRoleCount(?,?)
+		</select>
+
+	<parameterMap type="java.util.Map" id="getRoleCountMap">
+		<parameter property="userid" mode="IN" jdbcType="VARCHAR" />
+		<parameter property="@acount" mode="OUT" jdbcType="INTEGER" />
+	</parameterMap>
+
+
+</mapper>

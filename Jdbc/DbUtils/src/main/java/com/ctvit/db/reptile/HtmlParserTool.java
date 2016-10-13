@@ -22,7 +22,6 @@ public class HtmlParserTool {
 			NodeFilter frameFilter = new NodeFilter() {
 				private static final long serialVersionUID = 1L;
 
-				@Override
 				public boolean accept(Node node) {
 					if (node.getText().startsWith("frame src=")) {
 						return true;

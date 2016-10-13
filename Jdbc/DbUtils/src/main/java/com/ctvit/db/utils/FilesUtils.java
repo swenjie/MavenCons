@@ -116,7 +116,6 @@ public class FilesUtils {
 	//根据文件修改时间进行比较的内部类
 	static class CompratorByLastModified implements Comparator<File>{
 
-		@Override
 		public int compare(File o1, File o2) {
 			long diff=o1.lastModified()-o2.lastModified();
 			if(diff>0){
