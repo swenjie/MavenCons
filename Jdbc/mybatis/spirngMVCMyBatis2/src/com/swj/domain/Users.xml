@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC 
+    "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- 此时这个映射配置文件可以理解为就是接口实现类 -->
+<mapper namespace="com.swj.persist.UserDao">
+	<!-- 定义结果集类型 -->
+	<resultMap type="com.swj.domain.Users" id="resultUser">
+		<id property="userloginname" column="userloginname"/>
+		<result property="userloginpwd" column="userloginpwd"/>
+		<result property="userage" column="userage"/>
+		<result property="usersex" column="usersex"/>
+		<!-- 配置role -->
+		<association property="roles" javaType="com.swj.domain.Roles">
+			<id property="roleid" column="roleid"/>
+			<result property="rolename" column="rolename"/>
+		</association>
+		<!-- 配置menu -->
+		<collection property="menus" ofType="com.swj.domain.Menus">
+			<id property="menuid" column="menuid"/>
+			<result property="menuname" column="menuname"/>
+			<result property="menuurl" column="menuurl"/>
+			<result property="fatherid" column="fatherid"/>
+		</collection>
+		
+		<!-- 配置funs -->
+		<collection property="funs" ofType="com.swj.domain.Funs">
+			<id property="funid" column="funid"/>
+			<result property="funname" column="funname"/>
+			<result property="funurl" column="funurl"/>
+		</collection>
+	</resultMap>
+
+	<select id="selectUserAllProxy"  resultType="com.swj.domain.Users">
+		select * from users 
+	</select>
+	<!-- 用户登录查询 -->
+	<select id="selectUserByName" parameterType="String" resultMap="resultUser" >
+	 select * from 
+	      users u ,
+	      roles r,
+	      roles_menu rm,
+	      menus m,
+	      funs f
+	  where
+	      u.role_id = r.roleid and
+	      r.roleid = rm.role_id and
+	      rm.menu_id = m.menuid and
+	      u.userloginname=#{suibian} and
+	       m.menuid = f.menu_id(+)
+	</select>
+</mapper>
