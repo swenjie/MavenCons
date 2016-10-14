@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-10-13 15:36:55 by Hibernate Tools 4.0.0.Final -->
+<hibernate-mapping>
+    <class name="ctvit.hibernate.model.RecordRole" table="record_role" catalog="mybatis_st">
+        <id name="roleid" type="string">
+            <column name="roleid" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="rolename" type="string">
+            <column name="rolename" length="32" />
+        </property>
+        <property name="organizationid" type="string">
+            <column name="organizationid" length="32" />
+        </property>
+        <property name="roledesc" type="string">
+            <column name="roledesc" length="128" />
+        </property>
+        <property name="roleflag" type="java.lang.Integer">
+            <column name="roleflag" />
+        </property>
+        <property name="createtime" type="timestamp">
+            <column name="createtime" length="19" />
+        </property>
+        <property name="rolerights" type="binary">
+            <column name="rolerights" />
+        </property>
+        <property name="updatecreatetime" type="timestamp">
+            <column name="updatecreatetime" length="19" />
+        </property>
+        <property name="updateuserid" type="string">
+            <column name="updateuserid" length="32" />
+        </property>
+    </class>
+</hibernate-mapping>

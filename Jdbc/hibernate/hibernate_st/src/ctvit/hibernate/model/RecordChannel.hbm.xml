@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-10-13 15:36:55 by Hibernate Tools 4.0.0.Final -->
+<hibernate-mapping>
+    <class name="ctvit.hibernate.model.RecordChannel" table="record_channel" catalog="mybatis_st">
+        <id name="channelid" type="string">
+            <column name="channelid" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="organizationid" type="string">
+            <column name="organizationid" length="32" />
+        </property>
+        <property name="channelname" type="string">
+            <column name="channelname" length="32" />
+        </property>
+        <property name="channeldesc" type="string">
+            <column name="channeldesc" length="128" />
+        </property>
+    </class>
+</hibernate-mapping>

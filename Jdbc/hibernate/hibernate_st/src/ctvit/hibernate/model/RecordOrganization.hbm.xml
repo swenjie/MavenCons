@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-10-13 15:36:55 by Hibernate Tools 4.0.0.Final -->
+<hibernate-mapping>
+    <class name="ctvit.hibernate.model.RecordOrganization" table="record_organization" catalog="mybatis_st">
+        <id name="organizationid" type="string">
+            <column name="organizationid" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="organizationname" type="string">
+            <column name="organizationname" length="32" />
+        </property>
+        <property name="organizationcreatetime" type="timestamp">
+            <column name="organizationcreatetime" length="19" />
+        </property>
+        <property name="organizationflag" type="java.lang.Integer">
+            <column name="organizationflag">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="organizationdesc" type="string">
+            <column name="organizationdesc" length="128" />
+        </property>
+        <property name="organizationietitle" type="string">
+            <column name="organizationietitle" length="128" />
+        </property>
+        <property name="beizu" type="string">
+            <column name="beizu" length="128" />
+        </property>
+    </class>
+</hibernate-mapping>

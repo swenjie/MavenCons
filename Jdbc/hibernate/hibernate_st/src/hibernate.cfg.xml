@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">1026</property>
+        <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/mybatis_st</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    	<!-- 映射文件 -->
+    	<mapping resource="ctvit/hibernate/model/Test.hbm.xml"/>
+    	<mapping resource="ctvit/hibernate/model/RecordChannel.hbm.xml"/>
+    	<mapping resource="ctvit/hibernate/model/RecordOrganization.hbm.xml"/>
+    	<mapping resource="ctvit/hibernate/model/RecordRole.hbm.xml"/>
+    	<mapping resource="ctvit/hibernate/model/RecordUser.hbm.xml"/>
+    	<mapping resource="ctvit/hibernate/model/RecordUserRole.hbm.xml"/>
+    </session-factory>
+     
+</hibernate-configuration>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-10-13 15:36:55 by Hibernate Tools 4.0.0.Final -->
+<hibernate-mapping>
+    <class name="ctvit.hibernate.model.RecordUserRole" table="record_user_role" catalog="mybatis_st">
+        <id name="relationid" type="string">
+            <column name="relationid" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="userUserid" type="string">
+            <column name="user_userid" length="32" />
+        </property>
+        <property name="rolRoleid" type="string">
+            <column name="rol_roleid" length="32" />
+        </property>
+    </class>
+</hibernate-mapping>
