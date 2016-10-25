@@ -6,10 +6,32 @@ package ctvit.hibernate.model;
  */
 public class RecordUserRole implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String relationid;
-	private String userUserid;
-	private String rolRoleid;
+	private RecordUser user;
+	private RecordRole role;
 
+	
+	public RecordUser getUser() {
+		return user;
+	}
+
+	public void setUser(RecordUser user) {
+		this.user = user;
+	}
+
+	public RecordRole getRole() {
+		return role;
+	}
+
+	public void setRole(RecordRole role) {
+		this.role = role;
+	}
+
+	
 	public RecordUserRole() {
 	}
 
@@ -17,34 +39,13 @@ public class RecordUserRole implements java.io.Serializable {
 		this.relationid = relationid;
 	}
 
-	public RecordUserRole(String relationid, String userUserid, String rolRoleid) {
-		this.relationid = relationid;
-		this.userUserid = userUserid;
-		this.rolRoleid = rolRoleid;
-	}
-
+	
 	public String getRelationid() {
 		return this.relationid;
 	}
 
 	public void setRelationid(String relationid) {
 		this.relationid = relationid;
-	}
-
-	public String getUserUserid() {
-		return this.userUserid;
-	}
-
-	public void setUserUserid(String userUserid) {
-		this.userUserid = userUserid;
-	}
-
-	public String getRolRoleid() {
-		return this.rolRoleid;
-	}
-
-	public void setRolRoleid(String rolRoleid) {
-		this.rolRoleid = rolRoleid;
 	}
 
 }

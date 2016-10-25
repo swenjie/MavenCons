@@ -65,6 +65,22 @@ public class BaseDAO {
 		}
 		return result;
 	}
+	public static Object getS(Class c,String id){
+		Session session=null;
+		Object object=null;
+		try {
+			session = HibernateUtil.getSession();
+			object = session.get(c, id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				// 关闭session
+				session.close();
+			}
+		}
+		return object;
+	}
 
 	/**
 	 * @param c

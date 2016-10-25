@@ -3,19 +3,24 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2016-10-13 15:36:55 by Hibernate Tools 4.0.0.Final -->
 <hibernate-mapping>
-    <class name="ctvit.hibernate.model.RecordChannel" table="record_channel" catalog="mybatis_st">
-        <id name="channelid" type="string">
-            <column name="channelid" length="32" />
-            <generator class="assigned" />
-        </id>
-        <property name="organizationid" type="string">
-            <column name="organizationid" length="32" />
-        </property>
-        <property name="channelname" type="string">
-            <column name="channelname" length="32" />
-        </property>
-        <property name="channeldesc" type="string">
-            <column name="channeldesc" length="128" />
-        </property>
-    </class>
+	<class name="ctvit.hibernate.model.RecordChannel" table="record_channel"
+		catalog="mybatis_st">
+		<id name="channelid" type="string">
+			<column name="channelid" length="32" />
+			<generator class="assigned" />
+		</id>
+		<property name="organizationid" type="string">
+			<column name="organizationid" length="32" />
+		</property>
+		<property name="channelname" type="string">
+			<column name="channelname" length="32" />
+		</property>
+		<property name="channeldesc" type="string">
+			<column name="channeldesc" length="128" />
+		</property>
+		<many-to-one name="organization" lazy="false"
+			class="ctvit.hibernate.model.RecordOrganization" column="organizationid"
+			insert="false" update="false">
+		</many-to-one>
+	</class>
 </hibernate-mapping>

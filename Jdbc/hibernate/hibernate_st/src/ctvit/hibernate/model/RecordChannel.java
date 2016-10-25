@@ -6,10 +6,22 @@ package ctvit.hibernate.model;
  */
 public class RecordChannel implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String channelid;
 	private String organizationid;
 	private String channelname;
 	private String channeldesc;
+	private RecordOrganization organization;
+	public RecordOrganization getOrganization() {
+		return organization;
+	}
+
+	public void setOrganization(RecordOrganization organization) {
+		this.organization = organization;
+	}
 
 	public RecordChannel() {
 	}

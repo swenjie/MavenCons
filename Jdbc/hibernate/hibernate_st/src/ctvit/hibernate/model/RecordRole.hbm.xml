@@ -32,5 +32,16 @@
         <property name="updateuserid" type="string">
             <column name="updateuserid" length="32" />
         </property>
+        <set name="ru" cascade="all" lazy="false">
+			<key column="rol_roleid"></key>
+			<one-to-many class="ctvit.hibernate.model.RecordUserRole" />
+		</set>
+       <!-- 
+        <set name="users" table="record_user_role" lazy="true">
+			<key column="rol_roleid"></key>
+			<many-to-many class="ctvit.hibernate.model.RocordUser"
+				column="user_userid"></many-to-many>
+		</set>
+		-->
     </class>
 </hibernate-mapping>

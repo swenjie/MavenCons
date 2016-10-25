@@ -3,35 +3,43 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2016-10-13 15:36:55 by Hibernate Tools 4.0.0.Final -->
 <hibernate-mapping>
-    <class name="ctvit.hibernate.model.RecordUser" table="record_user" catalog="mybatis_st">
-        <id name="userid" type="string">
-            <column name="userid" length="32" />
-            <generator class="assigned" />
-        </id>
-        <property name="username" type="string">
-            <column name="username" length="32" />
-        </property>
-        <property name="userpassword" type="string">
-            <column name="userpassword" length="32">
-                <comment>??????</comment>
-            </column>
-        </property>
-        <property name="organizationid" type="string">
-            <column name="organizationid" length="32" />
-        </property>
-        <property name="userflag" type="java.lang.Integer">
-            <column name="userflag">
-                <comment>????</comment>
-            </column>
-        </property>
-        <property name="createtime" type="timestamp">
-            <column name="createtime" length="19" />
-        </property>
-        <property name="creator" type="string">
-            <column name="creator" length="32" />
-        </property>
-        <property name="roleflag" type="java.lang.Integer">
-            <column name="roleflag" />
-        </property>
-    </class>
+	<class name="ctvit.hibernate.model.RecordUser" table="record_user"
+		catalog="mybatis_st">
+		<id name="userid" type="string">
+			<column name="userid" length="32" />
+			<generator class="assigned" />
+		</id>
+		<property name="username" type="string">
+			<column name="username" length="32" />
+		</property>
+		<property name="userpassword" type="string">
+			<column name="userpassword" length="32">
+				<comment>??????</comment>
+			</column>
+		</property>
+		<property name="organizationid" type="string">
+			<column name="organizationid" length="32" />
+		</property>
+		<property name="userflag" type="java.lang.Integer">
+			<column name="userflag">
+				<comment>????</comment>
+			</column>
+		</property>
+		<property name="createtime" type="timestamp">
+			<column name="createtime" length="19" />
+		</property>
+		<property name="creator" type="string">
+			<column name="creator" length="32" />
+		</property>
+		<property name="roleflag" type="java.lang.Integer">
+			<column name="roleflag" />
+		</property>
+		<set name="ru" cascade="all" lazy="false">
+			<key column="user_userid"></key>
+			<one-to-many class="ctvit.hibernate.model.RecordUserRole"/>
+		</set>
+		<!-- <set name="roles" table="record_user_role" lazy="true"> <key column="user_userid"></key> 
+			<many-to-many class="ctvit.hibernate.model.RecordRole" column="rol_roleid"></many-to-many> 
+			</set> -->
+	</class>
 </hibernate-mapping>

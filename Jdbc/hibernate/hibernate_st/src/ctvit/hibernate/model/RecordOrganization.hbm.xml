@@ -28,5 +28,9 @@
         <property name="beizu" type="string">
             <column name="beizu" length="128" />
         </property>
+        <set name="channels" inverse="false">
+        <key column="organizationid"></key>
+        <one-to-many class="ctvit.hibernate.model.RecordChannel"/>
+        </set>
     </class>
 </hibernate-mapping>

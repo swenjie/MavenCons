@@ -3,16 +3,24 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2016-10-13 15:36:55 by Hibernate Tools 4.0.0.Final -->
 <hibernate-mapping>
-    <class name="ctvit.hibernate.model.RecordUserRole" table="record_user_role" catalog="mybatis_st">
-        <id name="relationid" type="string">
-            <column name="relationid" length="32" />
-            <generator class="assigned" />
-        </id>
-        <property name="userUserid" type="string">
-            <column name="user_userid" length="32" />
-        </property>
-        <property name="rolRoleid" type="string">
-            <column name="rol_roleid" length="32" />
-        </property>
-    </class>
+	<class name="ctvit.hibernate.model.RecordUserRole" table="record_user_role"
+		catalog="mybatis_st">
+		<id name="relationid" type="string">
+			<column name="relationid" length="32" />
+			<generator class="assigned" />
+		</id>
+		<many-to-one name="user" class="ctvit.hibernate.model.RecordUser"
+			column="user_userid" insert="true" update="true" lazy="false" cascade="all">
+		</many-to-one>
+		<many-to-one name="role" class="ctvit.hibernate.model.RecordRole"
+			column="rol_roleid" insert="true" update="true" lazy="false" cascade="all">
+		</many-to-one>
+		<!-- 
+		<property name="userUserid" type="string">
+			<column name="user_userid" length="32" />
+		</property>
+		<property name="rolRoleid" type="string"> <column name="rol_roleid" 
+			length="32" /> </property> 
+		-->
+	</class>
 </hibernate-mapping>
